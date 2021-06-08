@@ -1,0 +1,71 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+/* utilities */
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #1ED760;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+@keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+}
+header{
+    height: 70px;
+    background-color: #2E3A46;
+}
+main{
+    padding: 30px;
+    background-color: #1E2D3B;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+}
+main .loader{
+    height: calc(100vh - 130px);
+}
+main .container select{
+    width: 300px;
+    background-color: #2E3A46;
+}
+.card{
+    background-color: #2E3A46;
+}
+.card img{
+    min-height: 213px;
+}
+h1{
+    font-size: 16px;
+    font-weight: 600;
+}
+h2{
+    font-size: 14px;
+    opacity: .3;
+}
