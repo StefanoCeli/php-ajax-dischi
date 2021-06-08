@@ -8,53 +8,60 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="styles/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <title>Document</title>
 </head>
 <body>
 
-<header>
-
-</header>
-
-<main>
-
-<div class="container"
-        v-if= "loading === false"
-      >
-
-      <h3 class=" text-white text-center mb-4">Seleziona un genere</h3>
-      <!-- richiamo all'interno di select l'evento custom 'changeGenre' e avvio la funzione 'catchGenre' -->
-      <select 
-        class="form-select text-white mb-5 ms-auto me-auto"  aria-label="Select genre"
-        v-model= "selectGenre"
-        >
-            <option value="" >Tutti</option>
-            <option>Pop</option>
-            <option>Rock</option>
-            <option>Metal</option>
-            <option>Jazz</option>
-        </select>
-
-        <div class="row d-flex justify-content-center">
-            <?php foreach($database as $disco): ?>
-            <div class="card col-xs-12 col-sm-5 col-lg-2 mb-3 ms-2 me-2 p-3 p-lg-2 text-white">
-                    <a href="#"><img class="img-fluid" src= "<?php echo $disco['poster'] ?>" alt= "<?php echo $disco['title'] ?>"></a>
-                    <h1 class="text-center  mt-4 mb-4"><?php echo $disco['title'] ?></h1>
-                    <h2 class="text-center"><?php echo $disco['author'] ?></h2>
-                    <h2 class="text-center"><?php echo $disco['year'] ?></h2>
-            </div>
-            <?php endforeach; ?>
-        </div>
-      </div>
-
-      <!-- LOADER -->
-      <!-- <div v-if= "loading" class="loader d-flex justify-content-center align-items-center">
-        <div class="lds-facebook"><div></div><div></div><div></div></div>
-      </div> -->
-
-
-</main>
+    <div id="app">
+        <header>
+        </header>
     
+        <main>
+            <!-- mostro soltanto se sono arrivati i dati -->
+            <div class="container"
+                v-if= "loading === false"
+            >
+    
+                <h3 class=" text-white text-center mb-4">Seleziona un genere</h3>
+            
+                <select 
+                class="form-select text-white mb-5 ms-auto me-auto"  
+                >
+                    <option value="" >Tutti</option>
+                    <option>Pop</option>
+                    <option>Rock</option>
+                    <option>Metal</option>
+                    <option>Jazz</option>
+                </select>
+    
+                <div class="row d-flex justify-content-center">
+                    <!-- card -->
+                    <div 
+                    class="card col-xs-12 col-sm-5 col-lg-2 mb-3 ms-2 me-2 p-3 p-lg-2 text-white"
+                    v-for="disco in dischi"
+                    >
+    
+                        <a href="#"><img class="img-fluid" :src= "disco.poster" :alt= "disco.title"></a>
+                        <h1 class="text-center  mt-4 mb-4">{{ disco.title.toUpperCase() }}</h1>
+                        <h2 class="text-center">{{ disco.author }}</h2>
+                        <h2 class="text-center">{{ disco.year }}</h2>
+                        
+                    </div>
+                    <!-- /card -->
+                </div>
+            </div>
+    
+            <!-- LOADER -->
+            <div v-if= "loading" class="loader d-flex justify-content-center align-items-center">
+                <div class="lds-facebook"><div></div><div></div><div></div></div>
+            </div>
+    
+    
+        </main>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
