@@ -27,12 +27,11 @@
             
                 <select 
                 class="form-select text-white mb-5 ms-auto me-auto"  
+                v-model="ricercaGenere"
+                @change= this.callApi
                 >
-                    <option value="" >Tutti</option>
-                    <option>Pop</option>
-                    <option>Rock</option>
-                    <option>Metal</option>
-                    <option>Jazz</option>
+                    <option value="all" >Tutti</option>
+                    <option v-for="genere in generi" :value="genere">{{ genere }}</option>
                 </select>
     
                 <div class="row d-flex justify-content-center">

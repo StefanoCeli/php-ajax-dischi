@@ -4,21 +4,35 @@ const app = new Vue({
     data: {
 
        dischi:[],
-       loading:true
+       generi:[],
+       loading:true,
+       ricercaGenere:"all",
+       apiUrl: 'http://localhost/php-ajax-dischi/api.php'
       
+    },
+    methods:{
+        callApi(){
+            axios.get(this.apiUrl,{
+                params:{
+                    genre:this.ricercaGenere
+                }
+            })
+            .then( resp =>{
+                console.log(this.ricercaGenere);
+                this.dischi = resp.data.albums;
+                this.generi = resp.data.genres;
+                this.loading = false;
+            })
+            .catch( err => {
+                console.log(err);
+            })
+
+        }
     },
     created(){
 
-        axios.get('http://localhost/php-ajax-dischi/api.php')
-        .then( resp =>{
-            console.log(resp);
-            this.dischi = resp.data;
-            this.loading = false;
-        })
-        .catch( err => {
-            console.log(err);
-        })
-
+        this.callApi();
+        
     }
 
 })
