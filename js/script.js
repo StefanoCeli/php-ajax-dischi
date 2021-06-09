@@ -18,7 +18,7 @@ const app = new Vue({
                 }
             })
             .then( resp =>{
-                console.log(this.ricercaGenere);
+                console.log(resp);
                 this.dischi = resp.data.albums;
                 this.generi = resp.data.genres;
                 this.loading = false;

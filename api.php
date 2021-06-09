@@ -3,9 +3,13 @@
 
     header('Content-Type: application/json');
 
+    //uso la funzione array_multisort che va a ordinare gli array multidimensionali in base al primo valore che trova,all'interno uso array_column che va a mettere in cima la chiave che passiamo,cosi facendo il primo valore che avrà l'array sarà l'anno e verrà letto dall'array_multisort
+    array_multisort(array_column($database,'year'),SORT_ASC,SORT_NUMERIC,$database);
+
     $genres=[];
     $albums= empty($_GET['genre']) || $_GET['genre'] === "all" ? $database : [] ;
 
+    
 
     foreach($database as $album){
         if(!in_array($album['genre'],$genres)){
